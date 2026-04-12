@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ Discord Tools ⚡</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000000;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated purple glow background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(168, 85, 247, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(192, 132, 252, 0.15) 0%, transparent 50%);
+            animation: glowPulse 8s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            padding: 40px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #a855f7, #c084fc, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(168, 85, 247, 0.5);
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.3));
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #c084fc;
+            text-shadow: 0 0 10px rgba(192, 132, 252, 0.5);
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            animation: fadeIn 1s ease-out 0.3s backwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .tool-card {
+            background: rgba(30, 27, 60, 0.6);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(168, 85, 247, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(168, 85, 247, 0.1), transparent);
+            transform: rotate(45deg);
+            animation: shimmer 3s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
+        }
+
+        .tool-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: rgba(168, 85, 247, 0.8);
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.5),
+                        inset 0 0 20px rgba(168, 85, 247, 0.1);
+            background: rgba(30, 27, 60, 0.8);
+        }
+
+        .tool-card:active {
+            transform: translateY(-10px) scale(0.98);
+        }
+
+        .tool-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .tool-card:hover .tool-icon {
+            animation: spin 0.6s ease-in-out;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg) scale(1);
+            }
+            50% {
+                transform: rotate(180deg) scale(1.2);
+            }
+            100% {
+                transform: rotate(360deg) scale(1);
+            }
+        }
+
+        .tool-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #c084fc;
+            text-shadow: 0 0 10px rgba(192, 132, 252, 0.5);
+        }
+
+        .tool-description {
+            font-size: 0.95rem;
+            color: #b4a5d6;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            flex-direction: column;
+        }
+
+        button {
+            padding: 12px 24px;
+            border: 2px solid #a855f7;
+            border-radius: 12px;
+            background: transparent;
+            color: #c084fc;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        button:hover::before {
+            left: 100%;
+        }
+
+        button:hover {
+            background: rgba(168, 85, 247, 0.2);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.5),
+                        inset 0 0 20px rgba(168, 85, 247, 0.1);
+            transform: translateY(-2px);
+            border-color: #c084fc;
+            color: #ffffff;
+        }
+
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.3),
+                        inset 0 0 10px rgba(168, 85, 247, 0.1);
+        }
+
+        .btn-open {
+            background: rgba(168, 85, 247, 0.1);
+            border-color: #a855f7;
+        }
+
+        .btn-buy {
+            background: rgba(168, 85, 247, 0.15);
+            border-color: #c084fc;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+                letter-spacing: 2px;
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .tool-card {
+                padding: 25px;
+            }
+
+            .tool-icon {
+                font-size: 2.5rem;
+            }
+
+            .tool-name {
+                font-size: 1.3rem;
+            }
+
+            .button-group {
+                flex-direction: row;
+            }
+
+            button {
+                flex: 1;
+                padding: 10px 16px;
+                font-size: 0.9rem;
+            }
+
+            .content {
+                padding: 30px 16px;
+            }
+
+            header {
+                margin-bottom: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+                letter-spacing: 1px;
+            }
+
+            .subtitle {
+                font-size: 0.9rem;
+            }
+
+            .tool-card {
+                padding: 20px;
+            }
+
+            .tool-icon {
+                font-size: 2rem;
+            }
+
+            .tool-name {
+                font-size: 1.1rem;
+            }
+
+            .tool-description {
+                font-size: 0.85rem;
+            }
+
+            button {
+                padding: 10px 16px;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <header>
+            <h1>⚡ DISCORD TOOLS ⚡</h1>
+            <p class="subtitle">Powerful utilities for your Discord server</p>
+        </header>
+
+        <div class="tools-grid">
+            <!-- Webhook Sender -->
+            <div class="tool-card">
+                <div class="tool-icon">🪝</div>
+                <div class="tool-name">Webhook Sender</div>
+                <p class="tool-description">Send custom webhook messages to your Discord server instantly</p>
+                <div class="button-group">
+                    <a href="https://example.com" target="_blank"><button class="btn-open">Open Tool</button></a>
+                    <a href="https://www.roblox.com/game-pass/1772954321" target="_blank"><button class="btn-buy">Buy (10 Robux)</button></a>
+                </div>
+            </div>
+
+            <!-- Webhook Delay Sender -->
+            <div class="tool-card">
+                <div class="tool-icon">⏱️</div>
+                <div class="tool-name">Webhook Delay Sender</div>
+                <p class="tool-description">Schedule and send webhook messages with custom delays</p>
+                <div class="button-group">
+                    <a href="https://example.com" target="_blank"><button class="btn-open">Open Tool</button></a>
+                    <a href="https://www.roblox.com/game-pass/1772954321" target="_blank"><button class="btn-buy">Buy (10 Robux)</button></a>
+                </div>
+            </div>
+
+            <!-- Server Template Creator -->
+            <div class="tool-card">
+                <div class="tool-icon">🎨</div>
+                <div class="tool-name">Server Template Creator</div>
+                <p class="tool-description">Create beautiful Discord server templates in minutes</p>
+                <div class="button-group">
+                    <a href="https://example.com" target="_blank"><button class="btn-open">Open Tool</button></a>
+                    <a href="https://www.roblox.com/game-pass/1772954321" target="_blank"><button class="btn-buy">Buy (10 Robux)</button></a>
+                </div>
+            </div>
+
+            <!-- Moderation Bot -->
+            <div class="tool-card">
+                <div class="tool-icon">🛡️</div>
+                <div class="tool-name">Moderation Bot</div>
+                <p class="tool-description">Advanced moderation bot for managing your Discord community</p>
+                <div class="button-group">
+                    <a href="https://example.com" target="_blank"><button class="btn-open">Open Tool</button></a>
+                    <a href="https://www.roblox.com/game-pass/1772954321" target="_blank"><button class="btn-buy">Buy (10 Robux)</button></a>
+                </div>
+            </div>
+
+            <!-- Bot Maker -->
+            <div class="tool-card">
+                <div class="tool-icon">🤖</div>
+                <div class="tool-name">Bot Maker</div>
+                <p class="tool-description">Create custom Discord bots without coding experience</p>
+                <div class="button-group">
+                    <a href="https://example.com" target="_blank"><button class="btn-open">Open Tool</button></a>
+                    <a href="https://www.roblox.com/game-pass/1772954321" target="_blank"><button class="btn-buy">Buy (10 Robux)</button></a>
+                </div>
+            </div>
+
+            <!-- Bot Guide -->
+            <div class="tool-card">
+                <div class="tool-icon">📚</div>
+                <div class="tool-name">Bot Guide</div>
+                <p class="tool-description">Complete guides and tutorials for Discord bot development</p>
+                <div class="button-group">
+                    <a href="https://example.com" target="_blank"><button class="btn-open">Open Tool</button></a>
+                    <a href="https://www.roblox.com/game-pass/1772954321" target="_blank"><button class="btn-buy">Buy (10 Robux)</button></a>
+                </div>
+            </div>
+
+            <!-- AI Server Manager -->
+            <div class="tool-card">
+                <div class="tool-icon">🧠</div>
+                <div class="tool-name">AI Server Manager</div>
+                <p class="tool-description">AI-powered management for optimal server performance</p>
+                <div class="button-group">
+                    <a href="https://example.com" target="_blank"><button class="btn-open">Open Tool</button></a>
+                    <a href="https://www.roblox.com/game-pass/1772954321" target="_blank"><button class="btn-buy">Buy (10 Robux)</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add animation on card load
+        const cards = document.querySelectorAll('.tool-card');
+        cards.forEach((card, index) => {
+            card.style.animation = `fadeIn 0.6s ease-out ${index * 0.1}s backwards`;
+        });
+
+        // Log click events (optional tracking)
+        cards.forEach(card => {
+            card.addEventListener('click', function() {
+                console.log('Card clicked:', this.querySelector('.tool-name').textContent);
+            });
+        });
+    </script>
+</body>
+</html>
