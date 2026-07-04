@@ -1,0 +1,467 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-black: #1a1a1a;
+    --secondary-black: #2d2d2d;
+    --light-gray: #f5f5f5;
+    --dark-gray: #4a4a4a;
+    --white: #ffffff;
+    --border: #e0e0e0;
+    --accent: #333333;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--primary-black);
+    color: var(--white);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    padding: 40px 20px;
+    border-bottom: 2px solid var(--secondary-black);
+    margin-bottom: 40px;
+}
+
+.logo-section h1 {
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+}
+
+.tagline {
+    font-size: 16px;
+    color: var(--dark-gray);
+    letter-spacing: 1px;
+}
+
+/* Main Content */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+/* Email Section */
+.email-section {
+    background-color: var(--secondary-black);
+    border: 2px solid var(--accent);
+    padding: 40px;
+    border-radius: 8px;
+}
+
+.email-display {
+    margin-bottom: 30px;
+}
+
+.email-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--dark-gray);
+    margin-bottom: 12px;
+}
+
+.email-address {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    word-break: break-all;
+    padding: 20px;
+    background-color: var(--primary-black);
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+#emailText {
+    font-family: 'Courier New', monospace;
+    color: var(--white);
+}
+
+.email-domain-selector {
+    margin: 15px 0;
+}
+
+.email-domain-selector select {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: var(--primary-black);
+    color: var(--white);
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.email-domain-selector select:hover {
+    border-color: var(--dark-gray);
+}
+
+.email-domain-selector select:focus {
+    outline: none;
+    border-color: var(--white);
+}
+
+/* Controls */
+.controls-section {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+    align-items: center;
+}
+
+.timer-box {
+    text-align: center;
+    padding: 30px;
+    background-color: var(--primary-black);
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+}
+
+.timer-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--dark-gray);
+    margin-bottom: 15px;
+}
+
+.timer {
+    font-size: 48px;
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
+    margin-bottom: 15px;
+    color: var(--white);
+}
+
+.timer-subtext {
+    font-size: 12px;
+    color: var(--dark-gray);
+}
+
+.button-group {
+    display: flex;
+    gap: 15px;
+}
+
+.btn {
+    flex: 1;
+    padding: 15px 25px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-primary {
+    background-color: var(--white);
+    color: var(--primary-black);
+}
+
+.btn-primary:hover {
+    background-color: var(--light-gray);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: var(--accent);
+    color: var(--white);
+    border: 1px solid var(--white);
+}
+
+.btn-secondary:hover {
+    background-color: var(--dark-gray);
+    transform: translateY(-2px);
+}
+
+.btn-icon {
+    font-size: 18px;
+}
+
+/* Inbox Section */
+.inbox-section {
+    background-color: var(--secondary-black);
+    border: 2px solid var(--accent);
+    padding: 40px;
+    border-radius: 8px;
+}
+
+.inbox-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--accent);
+}
+
+.inbox-header h2 {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.inbox-status {
+    font-size: 12px;
+    color: var(--dark-gray);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.emails-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--dark-gray);
+}
+
+.empty-state p {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.empty-subtext {
+    font-size: 12px;
+    color: var(--dark-gray) !important;
+}
+
+.email-item {
+    background-color: var(--primary-black);
+    border: 1px solid var(--accent);
+    padding: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.email-item:hover {
+    border-color: var(--white);
+    background-color: var(--accent);
+}
+
+.email-from {
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.email-subject {
+    font-size: 14px;
+    color: var(--light-gray);
+    margin-bottom: 8px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.email-time {
+    font-size: 11px;
+    color: var(--dark-gray);
+}
+
+/* Features Section */
+.features-section {
+    background-color: var(--secondary-black);
+    border: 2px solid var(--accent);
+    padding: 40px;
+    border-radius: 8px;
+}
+
+.features-section h3 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--accent);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+}
+
+.feature {
+    text-align: center;
+    padding: 25px;
+    background-color: var(--primary-black);
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+}
+
+.feature-icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.feature h4 {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.feature p {
+    font-size: 13px;
+    color: var(--dark-gray);
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 40px 20px;
+    border-top: 2px solid var(--secondary-black);
+    color: var(--dark-gray);
+    font-size: 12px;
+    margin-top: 40px;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background-color: var(--secondary-black);
+    border: 2px solid var(--accent);
+    padding: 40px;
+    border-radius: 8px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 32px;
+    color: var(--white);
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-close:hover {
+    color: var(--dark-gray);
+}
+
+.modal-header {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--accent);
+}
+
+.modal-body {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--light-gray);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .controls-section {
+        grid-template-columns: 1fr;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .logo-section h1 {
+        font-size: 36px;
+    }
+
+    .email-address {
+        font-size: 16px;
+    }
+
+    .timer {
+        font-size: 36px;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .inbox-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}
+
+/* Copy notification */
+.copy-notification {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--white);
+    color: var(--primary-black);
+    padding: 15px 25px;
+    border-radius: 4px;
+    font-weight: 600;
+    animation: slideIn 0.3s ease;
+    z-index: 999;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
